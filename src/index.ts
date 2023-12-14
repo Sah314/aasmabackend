@@ -3,7 +3,7 @@ import express from "express";
 import axios from "axios";
 import fetchData from "./utils/fetchdata";
 const app  =express();
-console.log("HEllo");
+console.log("Hello");
 
 
 const PORT = 3000
@@ -29,6 +29,18 @@ app.get('/v1/top/:num',async(req:Request,res:Response)=>{
     }
 
 })
+
+app.get('v1/batch/:num/:page',async(req:Request,res:Response)=>{
+    const {num,page} = req.params;
+    try {
+        const data = await fetchData(Number(num),Number(page));
+        if(data){
+            return res.status(202).json({data:data});
+        }
+    } catch (error) {
+     console.error(error)   
+    }
+})
 app.listen(PORT,()=>{
-console.log(`App running on 3000`);
+console.log(`App running on ${PORT}`);
 })
