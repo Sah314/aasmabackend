@@ -9,6 +9,7 @@ console.log("Hello");
 const PORT = process.env.PORT
 
 app.get('/v1/health',(req:Request,res:Response)=>{
+    console.log("Healthy...");
     res.json("Api is healthy");
 })
 
