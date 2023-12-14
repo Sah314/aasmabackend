@@ -1,12 +1,12 @@
 import {Request,Response} from "express";
 import express from "express";
-import axios from "axios";
 import fetchData from "./utils/fetchdata";
+import dotenv from "dotenv"
+dotenv.config()
 const app  =express();
 console.log("Hello");
 
-
-const PORT = 3000
+const PORT = process.env.PORT
 
 app.get('/v1/health',(req:Request,res:Response)=>{
     res.json("Api is healthy");
@@ -36,6 +36,9 @@ app.get('v1/batch/:num/:page',async(req:Request,res:Response)=>{
         const data = await fetchData(Number(num),Number(page));
         if(data){
             return res.status(202).json({data:data});
+        }
+        else{
+            throw res.status(404)
         }
     } catch (error) {
      console.error(error)   
