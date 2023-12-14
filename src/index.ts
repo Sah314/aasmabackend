@@ -20,7 +20,7 @@ app.get('/v1/top/:num',async(req:Request,res:Response)=>{
     const data = await fetchData(Number(num),1);
     console.log(data.items.length);
         if(data){
-           return res.status(202).json({data:data});
+           return res.status(202).json(data);
         }
         else{
             throw res.status(404)
@@ -36,7 +36,7 @@ app.get('v1/batch/:num/:page',async(req:Request,res:Response)=>{
     try {
         const data = await fetchData(Number(num),Number(page));
         if(data){
-            return res.status(202).json({data:data});
+            return res.status(202).json(data);
         }
         else{
             throw res.status(404)
