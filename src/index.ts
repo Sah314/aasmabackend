@@ -1,12 +1,15 @@
 import {Request,Response} from "express";
 import express from "express";
 import fetchData from "./utils/fetchdata";
+import cors from "cors";
+
 import dotenv from "dotenv"
 dotenv.config()
 const app  =express();
 console.log("Hello");
 
 const PORT = process.env.PORT
+app.use(cors()) // Use this after the variable declaration
 
 app.get('/v1/health',(req:Request,res:Response)=>{
     console.log("Healthy...");
