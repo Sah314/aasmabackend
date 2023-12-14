@@ -34,10 +34,12 @@ app.get('/v1/top/:num',async(req:Request,res:Response)=>{
 
 })
 
-app.get('v1/batch/:num/:page',async(req:Request,res:Response)=>{
+app.get('/v1/batch/:num/:page',async(req:Request,res:Response)=>{
     const {num,page} = req.params;
+    console.log(num,page);
     try {
         const data = await fetchData(Number(num),Number(page));
+        console.log(data);
         if(data){
             return res.status(202).json(data);
         }
